@@ -7,11 +7,15 @@ import registerServiceWorker from './registerServiceWorker';
 import {createStore} from 'redux';
 import todoReducer from './reducer/todoReducer';
 
+import { Provider } from 'react-redux'
+
 const store = createStore(todoReducer);
 
 const render = () => { 
 	ReactDOM.render(
-   <TodoApp tododata={store.getState()} dispatch={store.dispatch}/>,
+		<Provider store={store}>
+   		<TodoApp />
+   	</Provider>,
    document.querySelector("#wrap")
   );
 }
