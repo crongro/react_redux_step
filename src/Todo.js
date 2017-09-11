@@ -2,8 +2,13 @@ import ListView from './ListView';
 import React from 'react';
 
 export default class Todo extends React.Component {
+
+  componentDidMount() {
+     this.props.getInitData();
+  }
+
   render() {
-    let {tododata, addTodo} = this.props;
+    let {tododata, addTodo } = this.props;
     
     return (
       <div>

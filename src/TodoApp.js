@@ -16,6 +16,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addTodo(evt) {
     	dispatch(actions.addTodo(evt.target.previousSibling.value));
+    },
+
+    getInitData() {
+      dispatch({type: 'DATA_FETCH_REQUESTED'});
     }
   }
 }

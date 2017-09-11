@@ -4,12 +4,24 @@ import './index.css';
 import TodoApp from './TodoApp';
 import registerServiceWorker from './registerServiceWorker';
 
-import {createStore} from 'redux';
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 import todoReducer from './reducer/todoReducer';
+import mySaga from './sagas'
 
 import { Provider } from 'react-redux'
 
-const store = createStore(todoReducer);
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware()
+// mount it on the Store
+const store = createStore(
+  todoReducer,
+  applyMiddleware(sagaMiddleware)
+)
+
+// then run the saga
+sagaMiddleware.run(mySaga)
+
 
 const render = () => { 
 	ReactDOM.render(
